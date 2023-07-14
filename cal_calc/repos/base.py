@@ -1,16 +1,22 @@
-from cal_calc.models import Day
+from pydantic import BaseModel
+
+from cal_calc.models import Day, Product
 
 from abc import abstractmethod
 
 
 class AbstractBaseRepo:
     
+    class Data(BaseModel):
+        products: list[Product]
+        days: list[Day]
+
     @abstractmethod
-    def loads(self) -> list[Day]:
+    def loads(self) -> Data:
         ...
 
     @abstractmethod
-    def dumps(self, entries: list[Day]):
+    def dumps(self, days: list[Day], products: list[Product]):
         ...
 
 

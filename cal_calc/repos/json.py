@@ -1,4 +1,3 @@
-from pydantic import BaseModel
 from json import loads
 
 from cal_calc.models import Day, Product
@@ -7,12 +6,8 @@ from cal_calc.repos import base
 class JsonRepo(base.AbstractBaseRepo):
     def __init__(self, filename: str = "days.json"):
         self.filename = filename 
-    
-    class Data(BaseModel):
-        products: list[Product]
-        days: list[Day]
         
-    def loads(self) -> Data: 
+    def loads(self) -> base.AbstractBaseRepo.Data: 
         file = open(self.filename, 'r')
         try: content: str = file.read()
         except FileExistsError:
