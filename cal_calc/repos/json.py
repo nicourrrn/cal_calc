@@ -1,18 +1,25 @@
-from cal_calc.models import Day
+from pydantic import BaseModel
+from json import loads
+
+from cal_calc.models import Day, Product
 from cal_calc.repos import base
-import json
 
 class JsonRepo(base.AbstractBaseRepo):
     def __init__(self, filename: str = "days.json"):
         self.filename = filename 
+    
+    class Data(BaseModel):
+        products: list[Product]
+        days: list[Day]
         
-    def loads(self) -> list[Day]:
+    def loads(self) -> Data: 
         file = open(self.filename, 'r')
         try: content: str = file.read()
         except FileExistsError:
             raise Exception("Invalid file") 
-        return [Day(**d) for d in json.loads(content)]
+        return self.Data(**loads(content))
         
-    def dumps(self, days: list[Day]):
-        json.dump(days, open(self.filename, 'w'), default=lambda d: d.model_dump()) 
+    def dumps(self, days: list[Day], products: list[Product]):
+        with open(self.filename, 'w') as file:
+            file.write(self.Data(products=products, days=days).model_dump_json())
 
