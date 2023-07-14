@@ -4,13 +4,10 @@ from cal_calc.repos.json import JsonRepo
 from datetime import date 
 
 days = [
-        models.Day(date=date.today() , meals=[]), 
-        models.Day(date=date.today() , meals=[]), 
-        models.Day(date=date.today() , meals=[]), 
-        models.Day(date=date.today() , meals=[]), 
-        models.Day(date=date.today() , meals=[]), 
-        models.Day(date=date.today() , meals=[]), 
-        models.Day(date=date.today() , meals=[]), 
+        models.Day(meals=[]), 
+        models.Day(meals=[]), 
+        models.Day(meals=[]), 
+        models.Day(meals=[]), 
 ]
 
 def test_json_repo():

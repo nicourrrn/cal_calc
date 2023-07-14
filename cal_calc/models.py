@@ -16,8 +16,8 @@ class Product(BaseModel):
 class Meal(BaseModel):
     product: Product
     amount: float 
-    time: time = Field(default_factory=lambda: time())
+    time: str = Field(default_factory=lambda: str(time()))
 
 class Day(BaseModel):
-    date: date = Field(default_factory=lambda: date.today())
+    date: str = Field(default_factory=lambda: str(date.today()))
     meals: list[Meal]
