@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "cal-calc"
+version = "0.1.0"
+description = ""
+authors = ["nicourrrn <s57111702@gmail.com>"]
+readme = "README.md"
+packages = [{include = "cal_calc"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
