@@ -1,5 +1,5 @@
 from pydantic import BaseModel, Field
-from datetime import date, time 
+from datetime import date, datetime 
 from typing import Optional
 
 class Product(BaseModel):
@@ -16,7 +16,7 @@ class Product(BaseModel):
 class Meal(BaseModel):
     product_id: int
     amount: float 
-    time: str = Field(default_factory=lambda: str(time()))
+    time: str = Field(default_factory=lambda: str(datetime.now().time()))
 
 class Day(BaseModel):
     date: str = Field(default_factory=lambda: str(date.today()))

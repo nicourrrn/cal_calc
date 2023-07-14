@@ -1,8 +1,9 @@
-from cal_calc import models
+from cal_calc import models, get_last_product_id
 from cal_calc.repos.json import JsonRepo 
 
 products = [
-        models.Product(name="Молоко", fats = 3.5, saturated_fats=2.2, proteins=3.0,
+        models.Product(id = get_last_product_id(), name="Молоко",
+                       fats = 3.5, saturated_fats=2.2, proteins=3.0,
                        carbohydrates=4.7, sugars=4.7, salt=0.125)
 ]
 
