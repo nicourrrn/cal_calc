@@ -12,6 +12,8 @@ class JsonRepo(base.AbstractBaseRepo):
         try: content: str = file.read()
         except FileExistsError:
             raise Exception("Invalid file") 
+        finally:
+            file.close()
         return self.Data(**loads(content))
         
     def dumps(self, days: list[Day], products: list[Product]):
