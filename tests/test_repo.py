@@ -17,7 +17,7 @@ days = [
 
 def test_json_repo():
     repo = JsonRepo()
-    repo.dumps(days)
-    repo.loads()
+    repo.dumps(days=days, products=products)
+    print(repo.loads())
 
 
