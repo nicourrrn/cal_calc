@@ -1,9 +1,10 @@
 from pydantic import BaseModel, Field
 from datetime import date, time 
 from typing import Optional
-
+from cal_calc.__init__ import products 
 
 class Product(BaseModel):
+    id: int = Field(default_factory=lambda: len(products))
     name: str
     # per 100 g. 
     fats: float
@@ -14,7 +15,7 @@ class Product(BaseModel):
     solt: Optional[float] = 0
 
 class Meal(BaseModel):
-    product: Product
+    product_id: int
     amount: float 
     time: str = Field(default_factory=lambda: str(time()))
 
