@@ -1,8 +1,9 @@
-from dataclasses import dataclass
-from datetime import date, time
+from pydantic import BaseModel, Field
+from datetime import date, time 
+from typing import Optional
 
-@dataclass
-class Product:
+
+class Product(BaseModel):
     name: str
     # per 100 g. 
     fats: float
@@ -10,15 +11,13 @@ class Product:
     proteins: float
     carbohydrates: float
     sugars: float
-    solt: float
+    solt: Optional[float] = 0
 
-@dataclass
-class Meal:
+class Meal(BaseModel):
     product: Product
     amount: float 
-    time: time
+    time: time = Field(default_factory=lambda: time())
 
-@dataclass
-class Day:
-    date: date
+class Day(BaseModel):
+    date: date = Field(default_factory=lambda: date.today())
     meals: list[Meal]
