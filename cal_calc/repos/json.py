@@ -14,5 +14,5 @@ class JsonRepo(base.AbstractBaseRepo):
         return [Day(**d) for d in json.loads(content)]
         
     def dumps(self, days: list[Day]):
-        json.dump(days, open(self.filename, 'w'), default=lambda d: d.__str__) 
+        json.dump(days, open(self.filename, 'w'), default=lambda d: d.model_dump()) 
 
